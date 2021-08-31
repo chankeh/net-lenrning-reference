@@ -32,7 +32,7 @@ int main(int argc,char *argv[]){
 	if(connect(sock,(struct sockaddr *)&serv_addr,sizeof(serv_addr)) == -1){
 		error_handling("connect() error\r\n");
 	}else{
-		printf("Connected....");
+		printf("Connected....\n");
 	}
 
 	while(1){
@@ -44,7 +44,7 @@ int main(int argc,char *argv[]){
 		str_len = write(sock,message,strlen(message));
 		recv_len = 0;
 		while(recv_len < str_len){
-			recv_cnt = read(sock,&message[10],BUF_SIZE-1);//返回成功读取的字节数
+			recv_cnt = read(sock,&message[recv_len],BUF_SIZE-1);//返回成功读取的字节数
 			if(recv_cnt == -1)
 				error_handling("read() error!");
 			recv_len +=recv_cnt;
